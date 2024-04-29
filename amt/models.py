@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import User
+from django.contrib.auth.models import Group, Permission, User, AbstractUser
 
 # Create your models here.
 
@@ -12,6 +12,12 @@ class Credito(models.Model):
     plazo_meses = models.IntegerField()
     institucion = models.ForeignKey(Institucion, on_delete=models.CASCADE, related_name='creditos')
 
-class Admin(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+class Admin(AbstractUser):
     institucion = models.ForeignKey(Institucion, on_delete=models.CASCADE, related_name='administradores')
+
+    groups = models.ManyToManyField(Group, related_name='admin_users')
+    user_permissions = models.ManyToManyField(Permission, related_name='admin_users')
+    
+    class Meta:
+        verbose_name = 'Administrador'
+        verbose_name_plural = 'Administradores'
