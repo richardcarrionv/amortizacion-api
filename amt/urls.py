@@ -1,0 +1,13 @@
+# urls.py
+from django.urls import path, include
+from rest_framework.routers import DefaultRouter
+from .views import InstitucionViewSet, CreditoViewSet, AdminViewSet
+
+router = DefaultRouter()
+router.register(r'instituciones', InstitucionViewSet, basename="institucion")
+router.register(r'creditos', CreditoViewSet, basename="credito")
+router.register(r'admins', AdminViewSet, basename="admin")
+
+urlpatterns = [
+    path('', include(router.urls)),
+]
