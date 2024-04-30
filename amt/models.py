@@ -5,6 +5,7 @@ from django.contrib.auth.models import Group, Permission, User, AbstractUser
 
 class Institucion(models.Model):
     nombre = models.CharField(max_length=100)
+    img = models.TextField(null=True)
 
 class Credito(models.Model):
     nombre = models.CharField(max_length=100)
