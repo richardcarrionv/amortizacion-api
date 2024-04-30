@@ -1,7 +1,7 @@
 # urls.py
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from .views import InstitucionViewSet, CreditoViewSet, AdminViewSet
+from .views import InstitucionViewSet, CreditoViewSet, AdminViewSet, LoginView
 
 router = DefaultRouter()
 router.register(r'instituciones', InstitucionViewSet, basename="institucion")
@@ -10,4 +10,5 @@ router.register(r'admins', AdminViewSet, basename="admin")
 
 urlpatterns = [
     path('', include(router.urls)),
+    path('login/', LoginView.as_view()),
 ]
